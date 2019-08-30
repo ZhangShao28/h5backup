@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小码充电</title>
+    <link href="style.css" rel="stylesheet">
+    <!--<script src="echarts.min.js"></script>-->
+    <!--<script src="echarts.js"></script>-->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="bgimg" id="app">
+    <div class="con_left">
+        <div class="map">
+            <div class="map_tit">
+                <div class="tit_box">
+                    <div class="color_F8B500 font-60">{{city_num}}<label class="font-30">个</label></div>
+                    <div class="font-24">城市</div>
+                </div>
+                <div class="tit_box">
+                    <div class="color_F8B500 font-60">{{device_num}}<label class="font-30">个</label></div>
+                    <div class="font-24">插口总数</div>
+                </div>
+                <div class="tit_box">
+                    <div class="color_F8B500 font-60">{{charge_service_num}}<label class="font-30">次</label></div>
+                    <div class="font-24">充电服务总数</div>
+                </div>
+                <div class="tit_box">
+                    <div class="color_F8B500 font-60">{{charging_num}}<label class="font-30">次</label></div>
+                    <div class="font-24">正在充电车辆</div>
+                </div>
+            </div>
+            <div class="map_con">
+                <div id="map_con" style="width: 1820px;height:700px;"></div>
+            </div>
+        </div>
+        <div class="bar">
+            <div style="position:relative;"> <div id="bar_con" style="width: 1350px;height:520px;"></div></div>
+            <div class="bar_right">
+                <div class="bar_box">
+                    <div class="dot_txt"><img src="image/Dot.png" alt="">平均每日充电：<label>{{charge}}<span>次</span></label></div>
+                    <div class="dot_txt"><img src="image/Dot.png" alt="">平均充电时长：<label>{{hour}}<span>小时</span>{{minute}}<span>分钟</span></label></div>
+                    <div class="dot_txt"><img src="image/Dot.png" alt="">平均用电量：<label>{{power}}<span>度</span></label></div>
+                    <div class="dot_txt"><img src="image/Dot.png" alt="">平均用户充电周期：<label>{{charge_cycle}}<span>天</span></label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearF"></div>
+    <div class="con_right">
+        <div class="table1">
+            <table>
+                <tr>
+                    <th>城市</th>
+                    <th>充电次数</th>
+                    <th>插口数量</th>
+                    <th>使用率</th>
+                </tr>
+                <tr v-for="item in city">
+                    <td>{{item.city_name}}</td>
+                    <td>{{item.charge_num}}</td>
+                    <td>{{item.device_num}}</td>
+                    <td>{{item.use_rate}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="table2">
+            <table>
+                <tr>
+                    <th>安装地</th>
+                    <th>充电次数</th>
+                    <th>插口数量</th>
+                    <th>使用率</th>
+                </tr>
+                <tr v-for="item in install_place">
+                    <td>{{item.xq_name}}</td>
+                    <td>{{item.charge_num}}</td>
+                    <td>{{item.device_num}}</td>
+                    <td>{{item.use_rate}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="con_right3">
+            <div class="con_right_box">
+                <div class="color_F8B500 font-60">{{total_user}}</div>
+                <div class="font-30">总用户</div>
+            </div>
+            <div class="con_right_box">
+                <div class="color_F8B500 font-60">{{active_user}}</div>
+                <div class="font-30">日活用户</div>
+            </div>
+            <div class="con_right_box">
+                <div class="color_F8B500 font-60">{{add_user}}</div>
+                <div class="font-30">本月新增用户</div>
+            </div>
+        </div>
+        <div class="con_right4">
+            <div class="con_right_box">
+                <div class="color_F8B500 font-60">9004<label class="font-30">吨</label></div>
+                <div class="font-30">上月累计节能减排</div>
+            </div>
+            <div class="con_right_box">
+                <div class="color_F8B500 font-60">9004<label class="font-30">次</label></div>
+                <div class="font-30">充满自停，减少火灾隐患</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/echarts.js"></script>
+<script src="js/customed.js"></script>
+<!--<script src="js/china.js"></script>-->
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            active_user: '',
+            add_user:'',
+            charge_arr:'',
+            city:'',
+            city_arr1:'',
+            city_arr2:'',
+            city_num:'',
+            device_num:'',
+            install_place:'',
+            total_user:'',
+            charge_service_num:'',
+            charging_num:'',
+            charge:'',
+            charge_cycle:'',
+            hour:'',
+            minute:'',
+            day:[],
+            power:'',
+        },
+        mounted:function(){
+            this.showData();
+            //需要执行的方法可以在mounted中进行触发，其获取的数据可以赋到data中后，可以放在前面进行渲染
+        },
+        methods:{
+            showData:function () {
+                var that = this;
+                jQuery.ajax({
+                    async: true,
+                    type: "GET",
+                    dataType: "jsonp",
+                    url: "https://c.ixmcd.com/linkus/count",
+                    success: function (res) {
+                        console.log(res);
+                        var res_data = res.data;
+                        if (res.msg == '请求成功！') {
+                            that.city_num = res_data.city_num//城市数量
+                            that.device_num = res_data.device_num//设备数量
+                            that.charge_service_num = res_data.charge_service_num//充电服务次数
+                            that.charging_num = res_data.charging_num//正在充电电动车
+                            that.charge = res_data.charge_arr.charge//
+                            that.charge_cycle = res_data.charge_arr.charge_cycle//充电周期
+                            that.day = res_data.charge_arr.day//柱状图y轴
+                            that.hour = res_data.charge_arr.hour//充电小时数
+                            that.minute = res_data.charge_arr.minute//充电分钟数
+                            that.power = res_data.charge_arr.power//充电用电量
+                            that.month_day = res_data.charge_arr.month_day//柱状图x轴
+                            that.city_arr1 = res_data.city_arr1
+                            that.city_arr2 = res_data.city_arr2
+                            that.month_day = res_data.charge_arr.month_day//柱状图x轴
+                            that.city = res_data.city//城市使用排行榜
+                            that.install_place = res_data.install_place
+                            that.total_user = res_data.total_user
+                            that.add_user = res_data.add_user
+                            that.active_user = res_data.active_user
+
+                            var myChart1 = echarts.init(document.getElementById('bar_con'),'customed');
+                            var myChart2 = echarts.init(document.getElementById('map_con'));
+
+                            var option1 = {
+                                tooltip : {
+                                    trigger: 'axis',
+                                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                        type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                                    },
+                                    textStyle:{
+                                        fontSize:30
+                                    }
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                label:{
+                                    show:true,
+                                    position: 'top',
+                                    color:'rgba(205,205,205,0.7)',
+                                    fontSize:20,
+                                    width:'100%'
+                                },
+                                itemStyle:{
+                                },
+                                textStyle:{
+                                    fontFamily:'PingFang SC'
+                                },
+                                xAxis : [
+                                    {
+                                        type : 'category',
+                                        name:'日期',
+                                        nameGap:-10,
+                                        data : res_data.charge_arr.month_day,
+                                        axisTick: {
+                                            alignWithLabel: true
+                                        },
+                                        axisLabel:{
+                                            fontSize:26
+                                        },
+                                        nameTextStyle:{
+                                            fontSize:30
+                                        }
+                                    }
+                                ],
+                                yAxis : [
+                                    {
+                                        type : 'value',
+                                        name:' 充电次数',
+                                        nameGap:25,
+                                        axisLabel:{
+                                            fontSize:26
+                                        },
+                                        splitLine:{
+                                            lineStyle:{
+                                                color:'rgba(36,98,231,0.4)'
+                                            }
+                                        },
+                                        nameTextStyle:{
+                                            fontSize:30,
+                                            color:'#fff'
+                                        }
+                                    }
+                                ],
+                                series : [
+                                    {
+                                        name:'充电次数',
+                                        type:'bar',
+                                        barWidth: '40%',
+                                        data:res_data.charge_arr.day,
+                                        label:{
+                                            fontFamily:'PingFang SC'
+                                        },
+                                        itemStyle:{
+                                            color:{
+                                                type: 'linear',
+                                                x: 0,
+                                                y: 0,
+                                                x2: 0,
+                                                y2: 1,
+                                                colorStops: [{
+                                                    offset: 0, color: '#2462E7' // 0% 处的颜色
+                                                }, {
+                                                    offset: 1, color: 'rgba(1,119,181,0.2)' // 100% 处的颜色
+                                                }],
+                                                globalCoord: false // 缺省为 false
+                                            }
+                                        }
+                                    }
+                                ]
+                            };
+                            $.get('js/china.json',function(chinaJson){
+                                echarts.registerMap('china', chinaJson)
+
+                                //这里写内容 如：
+
+                                var data = res_data.city_arr1;
+                                var geoCoordMap = res_data.city_arr2;
+                                var convertData = function (data) {
+                                    var res = [];
+                                    for (var i = 0; i < data.length; i++) {
+                                        var geoCoord = geoCoordMap[data[i].name];
+                                        if (geoCoord) {
+                                            res.push({
+                                                name: data[i].name,
+                                                value: geoCoord.concat(data[i].value)
+                                            });
+                                        }
+                                    }
+                                    return res;
+
+                                };
+                                var convertDatas = function (data) {
+                                    var res = [];
+                                    for (var i = 0; i < data.length; i++) {
+                                        var geoCoord = geoCoordMap[data[i].name];
+                                        console.log(geoCoord)
+                                        if (geoCoord) {
+                                            res.push({
+                                                name: data[i].name,
+                                                value: data[i].value
+                                            });
+                                        }
+                                    }
+                                    return res;
+
+                                };
+                                var option2 = {
+                                    backgroundColor: '',
+                                    title: {
+                                        text: '小码充电桩安装地及数量',
+                                        left: 'left',
+//                                        top:'0',
+
+                                        bottom:'10',
+                                        textStyle: {
+                                            color: '#F8B500',
+                                            fontSize:50,
+                                            fontWeight:400
+                                        }
+                                    },
+                                    tooltip : {
+                                        trigger: 'item',
+                                        alwaysShowContent:true,
+                                        formatter: function(params){
+                                            return ('充电桩数量'+'<br>'+params.name+'：'+ params.value[2])
+
+                                        },
+                                        padding:[10,20],
+                                        textStyle:{
+                                            fontSize:24,
+                                            fontFamily:'PingFang SC'
+                                        }
+                                    },
+                                    legend: {
+                                        orient: 'vertical',
+                                        y: 'bottom',
+                                        x:'right',
+                                        data:['充电桩数量1'],
+                                        textStyle: {
+                                            color: '#fff',
+                                            fontSize:40
+                                        }
+
+                                    },
+                                    geo: {
+                                        map: 'china',
+                                        center: [118, 25],
+                                        zoom:'18',
+                                        label: {
+                                            normal: {
+                    formatter: '{b}',
+                                                position: 'inside',
+                                                show: true,
+                                                fontSize:32,
+                                                color:'#fff'
+                                            },
+                                            emphasis: {
+                                                show: true,
+                                                color:'#f4e925'
+                                            }
+                                        },
+                                        roam: true,
+
+                                        itemStyle: {
+                                            normal: {
+                                                areaColor: '#0665bf',
+                                                borderColor: '#111'
+                                            },
+                                            emphasis: {
+                                                areaColor: '#019bf2'
+                                            }
+                                        }
+                                    },
+                                    series : [
+                                        {
+                                            name: '充电桩数量',
+                                            right:100,
+                                            type: 'scatter',
+                                            map:'china',
+                                            coordinateSystem: 'geo',
+                                            data: convertData(data),
+//                                            symbolSize: function (val) {
+//                                                return val[2] / 4;
+//                                            },
+                                            label: {
+                                                normal: {
+                                                    formatter: '{b}',
+                                                    position: 'top',
+                                                    show: true,
+                                                    fontSize:32
+                                                },
+                                                emphasis: {
+                                                    show: true,
+                                                    formatter: '{c}',
+                                                    position: 'top',
+                                                }
+                                            },
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#ddb926'
+                                                }
+                                            }
+                                        },
+                                        {
+                                            name: '充电桩数量',
+                                            type: 'effectScatter',
+                                            coordinateSystem: 'geo',
+                                            data: convertData(data),
+//                                            symbolSize: function (val) {
+//                                                return val[2] / 4;
+//                                            },
+                                            showEffectOn: 'render',
+                                            rippleEffect: {
+                                                brushType: 'stroke'
+                                            },
+                                            hoverAnimation: true,
+                                            label: {
+                                                normal: {
+//                                                    formatter: '{b}',
+                                                    show: true,
+                                                    formatter: function(params){
+                                                        return (params.value[2])
+
+                                                    },
+                                                    fontSize:32,
+                                                    position: 'bottom',
+                                                },
+                                                emphasis: {
+                                                    formatter: '{b}',
+                                                    color: '#ddb926',
+                                                    show: true,
+                                                    fontSize:40
+                                                }
+                                            },
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#f4e925',
+                                                    shadowBlur: 2,
+                                                    shadowColor: '#333'
+                                                }
+                                            },
+                                            zlevel: 1
+                                        }
+                                    ]
+                                };
+                                myChart2.setOption(option2);
+                            })
+                            // 使用刚指定的配置项和数据显示图表。
+                            myChart1.setOption(option1);
+                        } else {
+                            console.log('请求失败')
+                        }
+                    }
+                });
+            }}
+    })
+
+</script>
+</body>
+</html>

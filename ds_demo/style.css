@@ -1,0 +1,156 @@
+.bgimg{
+    background-image: url('image/ds_bg.png');
+    width: 3840px;
+    height: 2160px;
+}
+body{
+    font-family:"PingFang SC";
+    margin: 0px;
+    color: #fff;
+    font-weight: 400;
+}
+.clearF{
+    clear: both;
+}
+.con_left{
+    float: left;
+    position: relative;
+}
+
+.con_left .bar{
+    top: 1510px;
+    position: absolute;
+    left: 180px;
+}
+.con_left .bar .dot_txt{
+    padding: 15px 0px;
+    font-size: 26px;
+}
+.con_left .bar .dot_txt label{
+    font-size: 30px;
+    color: #FFBE00;
+}
+.con_left .bar .dot_txt label span{
+    font-size: 26px;
+}
+.con_left .bar .bar_right{
+    position: absolute;
+    right: -465px;
+    top: 110px;
+}
+.con_left .bar .bar_box img{
+    position: relative;
+    top: -5px;
+    left: -8px;
+    width: 10px;
+    height: 10px;
+}
+.con_right{
+    float: right;
+}
+.font-24{
+    font-size: 24px;
+}
+.font-26{
+    font-size: 26px;
+}
+.font-28{
+    font-size: 28px;
+}
+.font-30{
+    font-size: 30px;
+}
+.font-40{
+    font-size: 40px;
+}
+.font-60{
+    font-size: 60px;
+}
+.color_F8B500{
+    color: #F8B500;
+}
+.color_0177B5{
+    color: #0177B5
+}
+.con_left .map_tit{
+    /*margin-top: 390px;*/
+    /*margin-left: 570px;*/
+    position: relative;
+    top: 380px;
+    left: 620px;
+}
+.con_left .map_con{
+    position: absolute;
+    left: 200px;
+    top: 570px;
+}
+.con_left .map_tit .tit_box{
+    position: absolute;
+    float: left;
+    min-width: 160px;
+}
+.con_left .map_tit .tit_box:nth-child(2){
+    left: 340px;
+}
+.con_left .map_tit .tit_box:nth-child(3){
+    left: 670px;
+}
+.con_left .map_tit .tit_box:nth-child(4){
+    left: 1000px;
+}
+.table1{
+    position: relative;
+    top: 338px;
+    right: 270px;
+    height: 370px;
+}
+.table2{
+    position: relative;
+    top: 510px;
+    right: 270px;
+    height: 370px;
+}
+.con_right3{
+    position: relative;
+    top: 700px;
+    right: 270px;
+}
+.con_right4{
+    position: relative;
+    top: 1055px;
+    right: 270px;
+}
+
+.con_right4 .con_right_box{
+    float: left;
+    position: absolute;
+    left: 300px;
+}
+.con_right4 .con_right_box:nth-child(2){
+    float: left;
+    position: absolute;
+    left: 830px;
+}
+.con_right3 .con_right_box{
+    float: left;
+    position: absolute;
+    left: 210px;
+}
+.con_right3 .con_right_box:nth-child(2){
+    left: 595px;
+}
+.con_right3 .con_right_box:nth-child(3){
+    left: 980px;
+}
+table{
+    width: 1240px;
+    text-align: center;
+    font-size: 40px;
+}
+table tr{
+}
+table tbody tr td,table tbody tr th{
+    padding: 30px 0px;
+    line-height: 30px;
+    font-weight: 300;
+}

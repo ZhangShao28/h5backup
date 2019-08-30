@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+/*幻灯左右切换按钮 */
+.bx-wrapper .bx-controls-direction a { background: rgba(0,0,0,.2); border-radius: 0px; }
+
+#indexPage #projectlist .projectitem { margin: 0 1% 100px 0; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; background:transparent;}
+#indexPage #projectlist .projectitem:hover { box-shadow: 0px 0px 26px rgba(0, 0, 0, 0.1); }
+#indexPage #mproject #projectlist .projectitem .projectitem_content:hover .project_info p.title { color: #555; font-size:18px;}
+#indexPage #mproject #projectlist .projectitem .projectitem_content .project_info p.subtitle { margin-top: 0; color: #929292; text-align: left; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; position: absolute;bottom:30px; padding:0 25px; width:calc(100% - 50px); text-align:center; }
+#projectlist .projectitem .projectitem_content:hover .project_info p.subtitle { color: #929292; }
+#projectlist .projectitem { margin-bottom: 100px; width:24%;margin-right: 1.3%;}
+#indexPage #projectlist .projectitem .projectitem_content:hover .project_info { background: #fff;}
+#projectlist .projectitem .projectitem_content:hover .project_info { background: transparent;}
+#projectlist .projectitem .project_info p.title { color: #4E4E4E; padding: 10px 0px; }
+.content .header p.subtitle { font-size: 12px; margin-top: 5px; color: #a5a5a5; text-align: left; font-family: "HELVETICANEUELTPRO-THEX", "微软雅黑"; margin-left:5%;}
+#indexPage #mproject .content .header p.title { font-family: "HELVETICANEUELTPRO-THEX", "微软雅黑"; text-align: left; margin-left: 5%; }
+#indexPage #mproject .content .header p.subtitle { text-align: left; margin-left: 5%; }
+#indexPage #mproject a.more { margin: 0; position: absolute; right: 5%; top: 20px; height: 30px; font-size: 14px; line-height: 30px; width: 150px; background-color: #333; border-color: #333; color: #FFF; }
+#indexPage #mproject a.more:hover { background-color: #0F9AEE; border-color: #0F9AEE; color:#222;}
+#indexPage #mproject .bx-wrapper .bx-pager.bx-default-pager a { display: none; }
+#indexPage #mproject #projectlist #projectitem_0.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "01.";  margin-top: -20px; color: #0F9AEE; right: 0;font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif; font-size:62px;width: 100%; text-align:center; top:12%;}
+#indexPage #mproject #projectlist #projectitem_1.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "02.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_2.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "03.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_3.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "04.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_4.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "05.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_5.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "06.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_6.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "07.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_7.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "08.";  margin-top: -20px; color: #0F9AEE; right: 0;font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif; font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_8.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "09.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_9.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "10.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_10.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "11."; margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+#indexPage #mproject #projectlist #projectitem_11.projectitem .projectitem_content .project_info div::after { position: absolute; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; content: "12.";  margin-top: -20px; color: #0F9AEE; right: 0; font-family: GOTHAM-BLACK,Arial, Helvetica, sans-serif;font-size:62px;width: 100%; text-align:center;top:12%;}
+
+.bx-wrapper .bx-pager.bx-default-pager a { width: 20px; height: 4px; margin: 0px 5px; border-radius: 6px; border: 1px solid #C8C8C8; }
+.bx-wrapper .bx-pager.bx-default-pager a { width: 50px; height: 1px; }
+#indexPage #mproject .bx-wrapper .bx-controls-direction a.bx-prev { margin: -60px -70px; background:rgba(255,255,255,8); }
+#indexPage #mproject .bx-wrapper .bx-controls-direction a.bx-next { margin: -60px -70px; background:rgba(255,255,255,8); }
+#indexPage #mproject .bx-wrapper .bx-controls-direction a:hover { background: #0F9AEE; }
+/*#indexPage #mproject .content .wrapper { width: 70%; margin: 0 15%; min-width: 1270px}*/
+#indexPage #mproject .content .wrapper { width: 70%; margin: 0 auto; min-width: 1270px}
+.content .header { padding-top: 80px; padding-bottom: 3%; }
+#indexPage #mproject .bx-wrapper .bx-pager { bottom: -9%; text-align: right; }
+#indexPage .module .bgmask { background-color: transparent; }
+#indexPage #mproject .bx-wrapper .bx-controls-direction { display: inline; }
+#projectinfo .header .description { color: #939393; }
+#projectlist .bx-viewport { padding-bottom: 80px; }
+#projectlist .projectitem .projectitem_content .project_info::after { width: 0%; height: 3px; position: absolute; content: ""; top: 100%; left: 0; transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1) 0s; background-color: #0F9AEE; }
+#indexPage #mproject #projectlist .projectitem .projectitem_content:hover .project_info::after { width: 100%; }
+#indexPage #mproject #projectlist .projectitem .projectitem_content .project_info p.title {color: #565656; padding: 10px 25px; text-align: left; text-overflow: ellipsis; overflow: hidden;position: absolute;bottom:40px; font-size:18px; text-align:center; width:calc(100% - 0px);}
+#indexPage #mproject #projectlist .projectitem .projectitem_content .project_info div {position:absolute; height: 80px; width: 100%; bottom: -80px; margin-top: 0; top: auto; transition: all 0.3s ease-out 0s;}
+
+.bx-wrapper .bx-controls-direction a i { color: transparent; background: url("http://resources.jsmo.xin/templates/upload/380/icon/jiantou.png")no-repeat 0px 0px; width: 40px; height: 40px; margin: 0; }
+#projectlist .projectitem:hover a::after { margin-left: -20px; margin-top: -20px; top:90%; opacity: 1; }
+#indexPage #mproject .bx-wrapper a.bx-next i{background: url("http://resources.jsmo.xin/templates/upload/380/icon/jiantou.png")no-repeat -10px -248px; margin-left:0;}
+#indexPage #mproject .bx-wrapper a.bx-next:hover i {background: url("http://resources.jsmo.xin/templates/upload/380/icon/jiantou.png")no-repeat -10px -288px;}
+#indexPage #mproject .bx-wrapper a.bx-prev i{background: url("http://resources.jsmo.xin/templates/upload/380/icon/jiantou.png")no-repeat -70px -248px; margin-left:0;}
+#indexPage #mproject .bx-wrapper a.bx-prev:hover i{background: url("http://resources.jsmo.xin/templates/upload/380/icon/jiantou.png")no-repeat -70px -288px;}
+#indexPage #mproject .bx-wrapper a.bx-next:hover,#indexPage #mproject .bx-wrapper a.bx-prev:hover { background:rgba(0,0,0,.5)}
+
+#indexPage #mproject #projectlist .projectitem .projectitem_content img {transition: 0.5s;max-width: 100%; width:417px;vertical-align: middle;}
+#indexPage #mproject #projectlist .projectitem .projectitem_content:hover img {opacity: 0;transform: scale(1.2);}
+#indexPage #mproject #projectlist .projectitem .projectitem_content .project_info div { margin-top:0; position: absolute;left: 0;top: 0;height: 100%;
+width: 100%;z-index:-1;transition: 0.5s;transform: rotateX(80deg);transform-origin: center top 0;opacity: 1; }
+#indexPage #mproject #projectlist .projectitem .projectitem_content:hover .project_info div {transform:none; z-index:1;}
+#indexPage #mproject #projectlist .projectitem .projectitem_content .project_info p { margin-top:100px;}
+#indexPage #mproject #projectlist .projectitem .projectitem_content .project_info div::before { content:''; position:absolute; width:1px; height:0; background:rgba(0,0,0,.08);transition: all 0.3s ease-out 0s;top:33%;left:50%;}
+#indexPage #mproject #projectlist .projectitem .projectitem_content:hover .project_info div::before { height:30%;}
+#indexPage #mproject #projectlist .projectitem .projectitem_content:hover .project_info div.shuxian::before { height:0;}
+#indexPage #mproject .content .header { padding-bottom:60px;}
+
+
+
